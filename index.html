@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniel Ude — Backend Engineer</title>
+<meta name="description" content="Daniel Ude — backend engineer. Async Python, FastAPI and PostgreSQL: multi-tenant SaaS platforms and healthcare-grade APIs built to stay up.">
+<meta name="author" content="Daniel Ude">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230A6E75'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='17' font-weight='700' fill='%23EAEEEF' text-anchor='middle'%3EDU%3C/text%3E%3C/svg%3E">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Daniel Ude — Backend Engineer">
+<meta property="og:description" content="Daniel Ude — backend engineer. Async Python, FastAPI and PostgreSQL: multi-tenant SaaS platforms and healthcare-grade APIs built to stay up.">
+<meta property="og:url" content="https://dannyude.github.io/portfolio/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Daniel Ude — Backend Engineer">
+<meta name="twitter:description" content="Daniel Ude — backend engineer. Async Python, FastAPI and PostgreSQL: multi-tenant SaaS platforms and healthcare-grade APIs built to stay up.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,300..500&display=swap">
+<style>
+
+  :root{
+    --bg:#EAEEEF;
+    --surface:#FBFCFC;
+    --ink:#0E1518;
+    --ink-2:#2C3A40;
+    --muted:#61727A;
+    --rule:#CBD5D8;
+    --rule-soft:#DCE3E5;
+    --signal:#0A6E75;
+    --signal-soft:#0A6E7514;
+    --warn:#9A6413;
+    --shadow:0 1px 0 #0e151808, 0 12px 32px -20px #0e151830;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0A0F11;
+      --surface:#121A1D;
+      --ink:#E7EDEE;
+      --ink-2:#BAC7CB;
+      --muted:#82969C;
+      --rule:#243036;
+      --rule-soft:#1B2529;
+      --signal:#5FBFC4;
+      --signal-soft:#5FBFC418;
+      --warn:#D9A24E;
+      --shadow:0 1px 0 #ffffff08, 0 16px 40px -24px #00000090;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0A0F11;
+    --surface:#121A1D;
+    --ink:#E7EDEE;
+    --ink-2:#BAC7CB;
+    --muted:#82969C;
+    --rule:#243036;
+    --rule-soft:#1B2529;
+    --signal:#5FBFC4;
+    --signal-soft:#5FBFC418;
+    --warn:#D9A24E;
+    --shadow:0 1px 0 #ffffff08, 0 16px 40px -24px #00000090;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,"Times New Roman",serif;
+    font-size:17.5px;
+    line-height:1.62;
+    margin:0;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px 96px}
+
+  /* ---------- shared atoms ---------- */
+  .mono{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:11.5px;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  code{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:.86em;
+    background:var(--signal-soft);
+    color:var(--ink);
+    padding:1px 5px;
+    border-radius:2px;
+    white-space:nowrap;
+  }
+  .disp{
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    font-variation-settings:"wdth" 112,"wght" 640;
+    letter-spacing:-.012em;
+    text-wrap:balance;
+    line-height:1.06;
+  }
+  a{color:var(--signal);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--signal) 35%,transparent);transition:border-color .18s,color .18s}
+  a:hover{border-bottom-color:var(--signal)}
+  a:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:76px 0 0;
+    position:relative;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0 0 auto;height:340px;
+    background:repeating-linear-gradient(to bottom,var(--rule-soft) 0 1px,transparent 1px 34px);
+    -webkit-mask-image:linear-gradient(to bottom,#000,transparent 85%);
+    mask-image:linear-gradient(to bottom,#000,transparent 85%);
+    opacity:.85;pointer-events:none;
+  }
+  .hero > *{position:relative}
+
+  .eyebrow{
+    display:flex;align-items:center;gap:12px;
+    color:var(--muted);margin-bottom:26px;flex-wrap:wrap;
+  }
+  .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--signal);
+    box-shadow:0 0 0 3px var(--signal-soft);
+    flex:none;
+  }
+  h1{
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    font-variation-settings:"wdth" 118,"wght" 680;
+    font-size:clamp(3.1rem,10.5vw,6.6rem);
+    line-height:.92;
+    letter-spacing:-.028em;
+    margin:0 0 22px;
+    color:var(--ink);
+  }
+  .lede{
+    font-size:clamp(1.22rem,2.5vw,1.62rem);
+    line-height:1.42;
+    font-weight:300;
+    color:var(--ink-2);
+    max-width:24ch;
+    margin:0 0 40px;
+    text-wrap:balance;
+  }
+  .lede em{font-style:normal;color:var(--ink);border-bottom:2px solid var(--signal);padding-bottom:1px}
+
+  /* ---------- readouts ---------- */
+  .readouts{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    margin:0 0 64px;
+  }
+  .readout{padding:20px 22px 18px;border-left:1px solid var(--rule-soft)}
+  .readout:first-child{border-left:0;padding-left:0}
+  .readout .num{
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    font-variation-settings:"wdth" 78,"wght" 600;
+    font-size:clamp(1.9rem,4.6vw,2.7rem);
+    font-variant-numeric:tabular-nums;
+    line-height:1;
+    display:block;
+    color:var(--ink);
+  }
+  .readout .lbl{display:block;margin-top:9px;color:var(--muted)}
+
+  /* ---------- layout ---------- */
+  .section{
+    display:grid;
+    grid-template-columns:150px minmax(0,1fr);
+    gap:0 44px;
+    padding:52px 0;
+    border-top:1px solid var(--rule);
+  }
+  .section > .rail{color:var(--muted);padding-top:6px}
+  .rail .idx{display:block;color:var(--ink);margin-bottom:4px}
+
+  .prose{max-width:66ch}
+  .prose p{margin:0 0 18px}
+  .prose p:last-child{margin-bottom:0}
+  .prose strong{font-weight:500;color:var(--ink)}
+
+  h2{
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    font-variation-settings:"wdth" 108,"wght" 620;
+    font-size:1.62rem;letter-spacing:-.015em;
+    margin:0 0 20px;text-wrap:balance;
+  }
+
+  /* ---------- systems ---------- */
+  .systems{display:flex;flex-direction:column;gap:0}
+  .sys{
+    border-top:1px solid var(--rule-soft);
+    padding:30px 0;
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:14px;
+  }
+  .sys:first-child{border-top:0;padding-top:0}
+  .sys-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .sys-head h3{
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    font-variation-settings:"wdth" 106,"wght" 630;
+    font-size:1.34rem;margin:0;letter-spacing:-.012em;
+  }
+  .sys-head h3 a{color:var(--ink);border-bottom:1px solid var(--rule)}
+  .sys-head h3 a:hover{color:var(--signal);border-bottom-color:var(--signal)}
+  .tag{
+    color:var(--signal);
+    border:1px solid color-mix(in srgb,var(--signal) 32%,transparent);
+    background:var(--signal-soft);
+    padding:3px 8px;border-radius:2px;
+    white-space:nowrap;
+  }
+  .tag.teach{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 34%,transparent);background:color-mix(in srgb,var(--warn) 8%,transparent)}
+  .sys p{margin:0;max-width:66ch;color:var(--ink-2)}
+  .sys p + p{margin-top:14px}
+  .specs{
+    display:flex;flex-wrap:wrap;gap:0 26px;
+    color:var(--muted);padding-top:4px;
+  }
+  .specs span{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .specs b{color:var(--ink);font-weight:500}
+
+  /* ---------- practice table ---------- */
+  .practice{display:flex;flex-direction:column;gap:0}
+  .row{
+    display:grid;grid-template-columns:130px minmax(0,1fr);gap:0 28px;
+    padding:16px 0;border-top:1px solid var(--rule-soft);align-items:start;
+  }
+  .row:first-child{border-top:0;padding-top:0}
+  .row dt{color:var(--signal);padding-top:5px}
+  .row dd{margin:0;color:var(--ink-2);max-width:62ch}
+
+  /* ---------- stack ---------- */
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{
+    border:1px solid var(--rule);
+    color:var(--ink-2);
+    padding:5px 10px;border-radius:2px;
+    background:var(--surface);
+  }
+
+  /* ---------- footer ---------- */
+  .end{
+    border-top:1px solid var(--rule);
+    margin-top:52px;padding-top:44px;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;
+  }
+  .end h2{font-size:clamp(1.7rem,4vw,2.4rem);margin:0 0 12px;max-width:16ch}
+  .links{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:500;
+    border:1px solid var(--rule);border-radius:2px;
+    padding:12px 18px;background:var(--surface);color:var(--ink);
+    transition:border-color .18s,color .18s,background .18s;
+  }
+  .btn:hover{border-color:var(--signal);color:var(--signal)}
+  .btn.primary{background:var(--signal);border-color:var(--signal);color:var(--bg)}
+  .btn.primary:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+
+  @media (max-width:760px){
+    .section{grid-template-columns:1fr;gap:18px}
+    .section > .rail{padding-top:0}
+    .readouts{grid-template-columns:1fr 1fr}
+    .readout{padding:16px 0 14px;border-left:0}
+    .readout:nth-child(even){padding-left:22px;border-left:1px solid var(--rule-soft)}
+    .row{grid-template-columns:1fr;gap:5px}
+    .row dt{padding-top:0}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+
+  /* ---------- theme toggle ---------- */
+  .theme-toggle{
+    position:fixed;top:18px;right:18px;z-index:10;
+    width:38px;height:38px;border-radius:2px;
+    border:1px solid var(--rule);
+    background:var(--surface);color:var(--ink-2);
+    display:grid;place-items:center;cursor:pointer;
+    transition:border-color .18s,color .18s;
+  }
+  .theme-toggle:hover{border-color:var(--signal);color:var(--signal)}
+  .theme-toggle:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+  .theme-toggle svg{width:16px;height:16px;display:block}
+  .theme-toggle .moon{display:none}
+  :root[data-theme="dark"] .theme-toggle .moon{display:block}
+  :root[data-theme="dark"] .theme-toggle .sun{display:none}
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]) .theme-toggle .moon{display:block}
+    :root:not([data-theme="light"]) .theme-toggle .sun{display:none}
+  }
+  @media (max-width:760px){.theme-toggle{top:12px;right:12px;width:34px;height:34px}}
+</style>
+</head>
+<body>
+<button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch colour theme">
+  <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+  <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.4A8.6 8.6 0 1 1 9.6 3.5a6.9 6.9 0 0 0 10.9 10.9Z"/></svg>
+</button>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow mono">
+      <span class="dot"></span>
+      <span>Available — backend roles, remote</span>
+      <span aria-hidden="true">/</span>
+      <span>Since 2022</span>
+    </div>
+
+    <h1>Daniel&nbsp;Ude</h1>
+
+    <p class="lede">Backend engineer. I build the systems that <em>stay up</em> when it matters.</p>
+
+    <div class="readouts">
+      <div class="readout">
+        <span class="num" data-count="248">248</span>
+        <span class="lbl mono">Tests, largest system</span>
+      </div>
+      <div class="readout">
+        <span class="num" data-count="21">21</span>
+        <span class="lbl mono">Schema migrations</span>
+      </div>
+      <div class="readout">
+        <span class="num" data-count="3">3</span>
+        <span class="lbl mono">Multi-tenant platforms</span>
+      </div>
+      <div class="readout">
+        <span class="num">1</span>
+        <span class="lbl mono">Bootcamp I teach</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="rail mono"><span class="idx">01</span>Position</div>
+    <div class="prose">
+      <h2>Async Python that holds under real load</h2>
+      <p>I write <strong>FastAPI backends built for production, not for a screenshot</strong> — multi-tenant, migration-managed, test-covered, and shipped behind continuous integration. Tenant isolation and authorization live in the dependency layer, not sprinkled through handlers. Every schema change goes through Alembic.</p>
+      <p>My largest system carries <strong>248 passing tests</strong> against a CI pipeline that stands up live Postgres and Redis service containers on every push and pull request. I care about the part most portfolios skip entirely: what the system does on the bad path — when the model times out, when the token expires mid-socket, when two tenants collide.</p>
+      <p>I also <strong>teach this stack.</strong> I run a backend engineering bootcamp cohort — writing the curriculum, reviewing student code, and explaining <em>why</em> an architecture holds rather than just how to type it. Teaching it is why I can defend every decision in these repositories.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="rail mono"><span class="idx">02</span>Systems</div>
+    <div class="systems">
+
+      <article class="sys">
+        <div class="sys-head">
+          <h3><a href="https://github.com/dannyude/Pat-Stat">PatStat</a></h3>
+          <span class="tag mono">Healthcare · Real-time</span>
+        </div>
+        <p>A <strong>hospital-grade patient status platform.</strong> Clinical staff update patient state; families receive push notifications the moment it changes. Every hospital runs as a fully isolated tenant, and every access path enforces that boundary — which is the genuinely hard part.</p>
+        <p>Ships with role-based access control, WebSocket live updates behind a token watchdog, shift-handover workflows, emergency flags, a super-admin backoffice, and five dedicated documents covering architecture, security and operations.</p>
+        <div class="specs mono">
+          <span><b>248</b> tests</span><span><b>30</b> test suites</span><span><b>12</b> migrations</span><span>FastAPI · Celery · Redis · FCM</span>
+        </div>
+      </article>
+
+      <article class="sys">
+        <div class="sys-head">
+          <h3><a href="https://github.com/dannyude/DockFlow_API">DocFlow API</a></h3>
+          <span class="tag mono">Multi-tenant SaaS · LLM</span>
+        </div>
+        <p>An <strong>LLM document-extraction service built as a multi-tenant SaaS backend.</strong> Upload a PDF, image or DOCX; get structured JSON back by async polling or webhook callback.</p>
+        <p>Schema-driven extraction runs through an <strong>LLM map-reduce pipeline with layered reliability</strong>, so a single model outage never permanently blocks a job. Redis Bloom filters catch duplicate uploads before they cost anything. API keys are hashed, tenants are fully isolated, job progress is persisted and streamable.</p>
+        <div class="specs mono">
+          <span><b>7</b> migrations</span><span>Celery workers</span><span>S3 / MinIO</span><span>Webhook callbacks</span>
+        </div>
+      </article>
+
+      <article class="sys">
+        <div class="sys-head">
+          <h3><a href="https://github.com/dannyude/medication-reminder-api">MediReminder API</a></h3>
+          <span class="tag mono">Security-first</span>
+        </div>
+        <p>An <strong>asynchronous medication-adherence API</strong> with intelligent scheduling and multi-channel notifications — but the security model is the point: JWT token rotation, real session management, Redis-backed rate limiting, and Google OAuth.</p>
+        <p>Adds adherence analytics, a medication logging system, cron-driven reminder dispatch, Docker packaging and a GitHub Actions deploy workflow.</p>
+        <div class="specs mono">
+          <span><b>7</b> test suites</span><span>SQLAlchemy 2.0</span><span>OAuth2 · JWT rotation</span><span>Dockerised</span>
+        </div>
+      </article>
+
+      <article class="sys">
+        <div class="sys-head">
+          <h3><a href="https://github.com/dannyude/ICBM-Technical-Bootcamp-Cohort-Two">ICBM Bootcamp — Cohort Two</a></h3>
+          <span class="tag teach mono">Curriculum I teach</span>
+        </div>
+        <p>The <strong>backend curriculum I run</strong>, from pure-Python fundamentals through SQLAlchemy ORM modelling to a full FastAPI REST API with routers, schemas and auth.</p>
+        <p>Written to be read: each project stands alone, with worked solutions and the reasoning behind every design choice. If you want to know how I think about code, this is the fastest way to find out.</p>
+        <div class="specs mono">
+          <span><b>3</b> progressive projects</span><span>Worked solutions</span><span>Live cohort</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="rail mono"><span class="idx">03</span>Practice</div>
+    <dl class="practice">
+      <div class="row"><dt class="mono">Architecture</dt><dd>Per-feature modules — <code>models</code> / <code>schemas</code> / <code>service</code> / <code>routers</code> — so a codebase stays navigable at 50 files and at 500. Multi-tenancy and authorization enforced once, at the dependency layer.</dd></div>
+      <div class="row"><dt class="mono">Data</dt><dd>Async SQLAlchemy 2.0 on PostgreSQL. Every schema change through Alembic — no <code>create_all()</code> in anything that matters. Trigram indexes and real constraints where the query plan calls for them.</dd></div>
+      <div class="row"><dt class="mono">Reliability</dt><dd>Celery workers for anything slow. Redis for caching, rate limits and deduplication. Retry-and-fallback layers around third-party calls, health endpoints, and persisted job state so nothing dies silently.</dd></div>
+      <div class="row"><dt class="mono">Security</dt><dd>JWT with rotation, RBAC, hashed API keys, rate limiting, Pydantic v2 settings. Secrets live in the environment, never in the repository.</dd></div>
+      <div class="row"><dt class="mono">Proof</dt><dd>Pytest suites that cover edge cases and failure paths, not just the happy one. CI on push and pull request. Pinned dependencies with comments explaining why each pin exists.</dd></div>
+    </dl>
+  </section>
+
+  <section class="section">
+    <div class="rail mono"><span class="idx">04</span>Stack</div>
+    <div>
+      <div class="chips mono" style="margin-bottom:10px">
+        <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">SQLAlchemy 2.0</span><span class="chip">Pydantic v2</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Celery</span>
+      </div>
+      <div class="chips mono" style="margin-bottom:10px">
+        <span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">Alembic</span><span class="chip">GitHub Actions</span><span class="chip">MinIO / S3</span><span class="chip">Nginx</span>
+      </div>
+      <div class="chips mono">
+        <span class="chip">Pytest</span><span class="chip">JWT / OAuth2</span><span class="chip">RBAC</span><span class="chip">WebSockets</span><span class="chip">REST API design</span><span class="chip">Multi-tenant architecture</span><span class="chip">LLM integration</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="end">
+    <div>
+      <h2 class="disp">Need a backend that survives production?</h2>
+      <p class="mono" style="color:var(--muted);margin:0">Open to backend engineering roles — remote.</p>
+    </div>
+    <div class="links">
+      <a class="btn primary" href="https://linkedin.com/in/daniel-ude-2b750a152/">LinkedIn</a>
+      <a class="btn" href="https://github.com/dannyude">GitHub</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var els = [].slice.call(document.querySelectorAll(".num[data-count]"));
+    if (!els.length) return;
+
+    // Whatever happens, the real numbers must end up on screen.
+    function settle() {
+      els.forEach(function (el) { el.textContent = el.getAttribute("data-count"); });
+    }
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { settle(); return; }
+
+    // rAF never fires in a background tab, so guarantee the values regardless.
+    setTimeout(settle, 2000);
+
+    els.forEach(function (el) {
+      var target = parseInt(el.getAttribute("data-count"), 10);
+      if (!isFinite(target)) return;
+      var start = null, dur = 900;
+      el.textContent = "0";
+      function step(ts) {
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step); else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById("themeToggle");
+    var saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved);
+    btn.addEventListener("click", function () {
+      var isDark = root.getAttribute("data-theme") === "dark" ||
+        (!root.hasAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      var next = isDark ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+  })();
+</script>
+
+</body>
+</html>
