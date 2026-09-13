@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daniel Ude — Backend Engineer</title>
-<meta name="description" content="Daniel Ude — backend engineer. Async Python, FastAPI and PostgreSQL: multi-tenant SaaS platforms and healthcare-grade APIs built to stay up.">
+<meta name="description" content="Daniel Ude — backend engineer, 4+ years in async Python. FastAPI, PostgreSQL, Celery: multi-tenant SaaS, real-time clinical systems and event-driven pipelines built to stay up.">
 <meta name="author" content="Daniel Ude">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230A6E75'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial,sans-serif' font-size='17' font-weight='700' fill='%23EAEEEF' text-anchor='middle'%3EDU%3C/text%3E%3C/svg%3E">
 
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Daniel Ude — Backend Engineer">
-<meta property="og:description" content="Daniel Ude — backend engineer. Async Python, FastAPI and PostgreSQL: multi-tenant SaaS platforms and healthcare-grade APIs built to stay up.">
+<meta property="og:description" content="Daniel Ude — backend engineer, 4+ years in async Python. FastAPI, PostgreSQL, Celery: multi-tenant SaaS, real-time clinical systems and event-driven pipelines built to stay up.">
 <meta property="og:url" content="https://dannyude.github.io/portfolio/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Daniel Ude — Backend Engineer">
-<meta name="twitter:description" content="Daniel Ude — backend engineer. Async Python, FastAPI and PostgreSQL: multi-tenant SaaS platforms and healthcare-grade APIs built to stay up.">
+<meta name="twitter:description" content="Daniel Ude — backend engineer, 4+ years in async Python. FastAPI, PostgreSQL, Celery: multi-tenant SaaS, real-time clinical systems and event-driven pipelines built to stay up.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -219,6 +219,7 @@
     white-space:nowrap;
   }
   .tag.teach{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 34%,transparent);background:color-mix(in srgb,var(--warn) 8%,transparent)}
+  .tag.new{background:var(--signal);border-color:var(--signal);color:var(--bg)}
   .sys p{margin:0;max-width:66ch;color:var(--ink-2)}
   .sys p + p{margin-top:14px}
   .specs{
@@ -227,6 +228,28 @@
   }
   .specs span{font-variant-numeric:tabular-nums;white-space:nowrap}
   .specs b{color:var(--ink);font-weight:500}
+
+  /* ---------- experience ---------- */
+  .roles{display:flex;flex-direction:column;gap:0}
+  .role{border-top:1px solid var(--rule-soft);padding:26px 0}
+  .role:first-child{border-top:0;padding-top:0}
+  .role-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    gap:6px 24px;flex-wrap:wrap;margin-bottom:13px;
+  }
+  .role-head h3{
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    font-variation-settings:"wdth" 106,"wght" 630;
+    font-size:1.18rem;margin:0;letter-spacing:-.01em;color:var(--ink);
+  }
+  .role-head .at{
+    display:block;
+    font-variation-settings:"wdth" 100,"wght" 500;
+    font-size:.92rem;color:var(--signal);margin-top:4px;
+  }
+  .role-head .when{color:var(--muted);white-space:nowrap;flex:none;padding-top:4px}
+  .role p{margin:0;max-width:66ch;color:var(--ink-2)}
+  .role p + p{margin-top:12px}
 
   /* ---------- practice table ---------- */
   .practice{display:flex;flex-direction:column;gap:0}
@@ -313,7 +336,7 @@
       <span class="dot"></span>
       <span>Available — backend roles, remote</span>
       <span aria-hidden="true">/</span>
-      <span>Since 2022</span>
+      <span>Lagos, Nigeria</span>
     </div>
 
     <h1>Daniel&nbsp;Ude</h1>
@@ -322,20 +345,20 @@
 
     <div class="readouts">
       <div class="readout">
+        <span class="num" data-count="4" data-suffix="+">4+</span>
+        <span class="lbl mono">Years shipping backends</span>
+      </div>
+      <div class="readout">
         <span class="num" data-count="248">248</span>
         <span class="lbl mono">Tests, largest system</span>
       </div>
       <div class="readout">
-        <span class="num" data-count="21">21</span>
-        <span class="lbl mono">Schema migrations</span>
+        <span class="num" data-count="40">40</span>
+        <span class="lbl mono">Developers trained</span>
       </div>
       <div class="readout">
-        <span class="num" data-count="3">3</span>
-        <span class="lbl mono">Multi-tenant platforms</span>
-      </div>
-      <div class="readout">
-        <span class="num">1</span>
-        <span class="lbl mono">Bootcamp I teach</span>
+        <span class="num" data-count="15">15</span>
+        <span class="lbl mono">Client projects delivered</span>
       </div>
     </div>
   </header>
@@ -344,15 +367,69 @@
     <div class="rail mono"><span class="idx">01</span>Position</div>
     <div class="prose">
       <h2>Async Python that holds under real load</h2>
-      <p>I write <strong>FastAPI backends built for production, not for a screenshot</strong> — multi-tenant, migration-managed, test-covered, and shipped behind continuous integration. Tenant isolation and authorization live in the dependency layer, not sprinkled through handlers. Every schema change goes through Alembic.</p>
-      <p>My largest system carries <strong>248 passing tests</strong> against a CI pipeline that stands up live Postgres and Redis service containers on every push and pull request. I care about the part most portfolios skip entirely: what the system does on the bad path — when the model times out, when the token expires mid-socket, when two tenants collide.</p>
-      <p>I also <strong>teach this stack.</strong> I run a backend engineering bootcamp cohort — writing the curriculum, reviewing student code, and explaining <em>why</em> an architecture holds rather than just how to type it. Teaching it is why I can defend every decision in these repositories.</p>
+      <p><strong>Four-plus years building and shipping APIs in Python and FastAPI</strong> — crash-ingestion pipelines for a live game, multi-tenant SaaS, real-time clinical systems, distributed job processing. I own services end to end: schema and API design through implementation, testing, deployment and production maintenance.</p>
+      <p>The work is built for production, not for a screenshot. Tenant isolation and authorization live in the dependency layer, not sprinkled through handlers; every schema change goes through Alembic. My largest system carries <strong>248 passing tests</strong> against a CI pipeline that stands up live Postgres and Redis service containers on every push. I care about the part most portfolios skip entirely: what the system does on the bad path — when the model times out, when the token expires mid-socket, when two tenants collide.</p>
+      <p>I came to engineering from <strong>a law degree</strong>, retrained, and now <strong>teach this stack to cohorts of 40 developers</strong> — writing the curriculum, reviewing code, explaining <em>why</em> an architecture holds rather than just how to type it. That route is also why picking up something unfamiliar fast is the normal case for me, not the exception. Most recently that meant shipping a Web3 backend in a 48-hour hackathon, having never written one before.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="rail mono"><span class="idx">02</span>Systems</div>
+    <div class="rail mono"><span class="idx">02</span>Experience</div>
+    <div class="roles">
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Backend Engineer <span class="at">Tenece Services Ltd</span></h3>
+          <span class="when mono">Feb 2025 — Feb 2026 · Contract</span>
+        </div>
+        <p>Designed and shipped the <strong>crash-tracking service for <em>Nautical Fury</em></strong>, a live game — capturing forced closes and crashes from both code errors and graphics overload so the game team could reproduce and fix them.</p>
+        <p>Built the <strong>real-time event ingestion pipeline</strong> on FastAPI and Celery, processing crash events, uncaught exceptions, request failures and performance anomalies through a distributed, event-driven architecture. Owned the service end to end, from system design and database architecture through to deployment and production maintenance.</p>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Technical Facilitator &amp; Software Developer <span class="at">SBTS Technology Limited</span></h3>
+          <span class="when mono">Mar 2026 — Present</span>
+        </div>
+        <p>Designed and deliver <strong>backend engineering training to cohorts of 40 developers</strong> — Python, REST APIs, SQLAlchemy, PostgreSQL and Git — through project-based learning, hands-on code review and worked solutions.</p>
+        <p>Mentor learner teams through end-to-end delivery on production-shaped projects: a job recruitment platform spanning candidates, employers, applications, interviews and administration, and a multi-vendor e-commerce marketplace.</p>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Freelance Backend Developer</h3>
+          <span class="when mono">Dec 2021 — 2024</span>
+        </div>
+        <p>Built and maintained REST APIs and backend services for <strong>15 clients</strong> across software and technology projects — data modelling, business logic and third-party integrations in Flask, FastAPI, SQLAlchemy and PostgreSQL — plus database and automation scripting, and debugging inside existing client codebases.</p>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Education</h3>
+          <span class="when mono">2016 — 2025</span>
+        </div>
+        <p><strong>Diploma in Backend Engineering</strong>, AltSchool Africa (2024–2025). <strong>Bachelor of Laws (LL.B.)</strong>, Enugu State University of Science and Technology (2016–2021).</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="rail mono"><span class="idx">03</span>Systems</div>
     <div class="systems">
+
+      <article class="sys">
+        <div class="sys-head">
+          <h3><a href="https://github.com/Soar-On-Technologies-Global-Concept-Ltd/ETHOnline-Startup/tree/main/intentra-monorepo">Intentra</a></h3>
+          <span class="tag new mono">Web3 · 48-hour hackathon</span>
+        </div>
+        <p><strong>I owned the backend</strong> for a four-person ETHOnline 2026 submission — and I had never written a line of Web3 before the weekend started.</p>
+        <p>Intentra ties every payment to what a person actually authorised and what was actually delivered: the AI proposes, the human signs an <strong>EIP-712 mandate</strong>, USDC sits in a Solidity escrow on the Arc testnet, delivery photos are hashed and anchored on-chain, and a disputed job settles only on a split both parties signed. I built the <strong>FastAPI modular monolith</strong> that orchestrates it — the trusted coordinator that never holds funds.</p>
+        <p>The engineering discipline is the part I'd point at. Money states commit on <strong>chain events only</strong>: the API requests, an event watcher applies them. A single state machine is the only writer of transaction state, and that invariant is <strong>enforced by an AST scan in the test suite</strong> rather than by convention. Signature verification, idempotency keys, an outbox and a reconciliation pass hold the rest together.</p>
+        <div class="specs mono">
+          <span><b>20</b> test suites</span><span><b>48</b> hours</span><span>EIP-712 · Solidity · The Graph</span><span>FastAPI · PostgreSQL</span>
+        </div>
+      </article>
 
       <article class="sys">
         <div class="sys-head">
@@ -406,7 +483,7 @@
   </section>
 
   <section class="section">
-    <div class="rail mono"><span class="idx">03</span>Practice</div>
+    <div class="rail mono"><span class="idx">04</span>Practice</div>
     <dl class="practice">
       <div class="row"><dt class="mono">Architecture</dt><dd>Per-feature modules — <code>models</code> / <code>schemas</code> / <code>service</code> / <code>routers</code> — so a codebase stays navigable at 50 files and at 500. Multi-tenancy and authorization enforced once, at the dependency layer.</dd></div>
       <div class="row"><dt class="mono">Data</dt><dd>Async SQLAlchemy 2.0 on PostgreSQL. Every schema change through Alembic — no <code>create_all()</code> in anything that matters. Trigram indexes and real constraints where the query plan calls for them.</dd></div>
@@ -417,7 +494,7 @@
   </section>
 
   <section class="section">
-    <div class="rail mono"><span class="idx">04</span>Stack</div>
+    <div class="rail mono"><span class="idx">05</span>Stack</div>
     <div>
       <div class="chips mono" style="margin-bottom:10px">
         <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">SQLAlchemy 2.0</span><span class="chip">Pydantic v2</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">Celery</span>
@@ -426,7 +503,7 @@
         <span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">Alembic</span><span class="chip">GitHub Actions</span><span class="chip">MinIO / S3</span><span class="chip">Nginx</span>
       </div>
       <div class="chips mono">
-        <span class="chip">Pytest</span><span class="chip">JWT / OAuth2</span><span class="chip">RBAC</span><span class="chip">WebSockets</span><span class="chip">REST API design</span><span class="chip">Multi-tenant architecture</span><span class="chip">LLM integration</span>
+        <span class="chip">Pytest</span><span class="chip">JWT / OAuth2</span><span class="chip">RBAC</span><span class="chip">WebSockets</span><span class="chip">REST API design</span><span class="chip">Event-driven design</span><span class="chip">Multi-tenant architecture</span><span class="chip">LLM integration</span><span class="chip">EIP-712</span><span class="chip">Solidity ABI / on-chain events</span>
       </div>
     </div>
   </section>
@@ -434,10 +511,15 @@
   <footer class="end">
     <div>
       <h2 class="disp">Need a backend that survives production?</h2>
-      <p class="mono" style="color:var(--muted);margin:0">Open to backend engineering roles — remote.</p>
+      <p class="mono" style="color:var(--muted);margin:0 0 8px">Open to backend engineering roles — remote.</p>
+      <p class="mono" style="color:var(--muted);margin:0">
+        <a href="mailto:danielude98@gmail.com">danielude98@gmail.com</a>
+        &nbsp;·&nbsp; Lekki, Lagos, Nigeria
+      </p>
     </div>
     <div class="links">
-      <a class="btn primary" href="https://linkedin.com/in/daniel-ude-2b750a152/">LinkedIn</a>
+      <a class="btn primary" href="mailto:danielude98@gmail.com">Email me</a>
+      <a class="btn" href="https://linkedin.com/in/daniel-ude-2b750a152/">LinkedIn</a>
       <a class="btn" href="https://github.com/dannyude">GitHub</a>
     </div>
   </footer>
@@ -451,7 +533,9 @@
 
     // Whatever happens, the real numbers must end up on screen.
     function settle() {
-      els.forEach(function (el) { el.textContent = el.getAttribute("data-count"); });
+      els.forEach(function (el) {
+        el.textContent = el.getAttribute("data-count") + (el.getAttribute("data-suffix") || "");
+      });
     }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { settle(); return; }
 
@@ -461,13 +545,14 @@
     els.forEach(function (el) {
       var target = parseInt(el.getAttribute("data-count"), 10);
       if (!isFinite(target)) return;
+      var suffix = el.getAttribute("data-suffix") || "";
       var start = null, dur = 900;
-      el.textContent = "0";
+      el.textContent = "0" + suffix;
       function step(ts) {
         if (start === null) start = ts;
         var p = Math.min((ts - start) / dur, 1);
-        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(step); else el.textContent = target;
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))) + suffix;
+        if (p < 1) requestAnimationFrame(step); else el.textContent = target + suffix;
       }
       requestAnimationFrame(step);
     });
