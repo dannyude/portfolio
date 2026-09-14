@@ -261,6 +261,32 @@
   .role p{margin:0;max-width:66ch;color:var(--ink-2)}
   .role p + p{margin-top:12px}
 
+
+  /* ---------- diagrams ---------- */
+  .fig{margin:6px 0 0}
+  .fig .frame{
+    border:1px solid var(--rule-soft);
+    background:var(--surface);
+    padding:20px 18px 14px;
+    overflow-x:auto;
+  }
+  .fig svg{display:block;width:100%;min-width:540px;height:auto;color:var(--ink-2)}
+  .fig .bx{fill:none;stroke:currentColor;stroke-width:1;opacity:.5}
+  .fig .ln{stroke:currentColor;stroke-width:1;fill:none;opacity:.5}
+  .fig .dash{stroke-dasharray:4 4;opacity:.32}
+  .fig .t{fill:var(--ink);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px}
+  .fig .tm{fill:var(--muted);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.03em}
+  .fig .sig{stroke:var(--signal);opacity:1}
+  .fig .sigt{fill:var(--signal);font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.03em}
+  .fig .head{fill:currentColor}
+  .fig .headsig{fill:var(--signal)}
+  .fig figcaption{
+    margin-top:11px;color:var(--muted);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:10.5px;letter-spacing:.05em;line-height:1.5;
+  }
+  @media (max-width:760px){ .fig .frame{padding:14px 12px 10px} }
+
   /* ---------- practice table ---------- */
   .practice{display:flex;flex-direction:column;gap:0}
   .row{
@@ -436,6 +462,32 @@
         <p><strong>I owned the backend</strong> for a four-person ETHOnline 2026 submission — and I had never written a line of Web3 before the weekend started.</p>
         <p>Intentra ties every payment to what a person actually authorised and what was actually delivered: the AI proposes, the human signs an <strong>EIP-712 mandate</strong>, USDC sits in a Solidity escrow on the Arc testnet, delivery photos are hashed and anchored on-chain, and a disputed job settles only on a split both parties signed. I built the <strong>FastAPI modular monolith</strong> that orchestrates it — the trusted coordinator that never holds funds.</p>
         <p>The engineering discipline is the part I'd point at. Money states commit on <strong>chain events only</strong>: the API requests, an event watcher applies them. A single state machine is the only writer of transaction state, and that invariant is <strong>enforced by an AST scan in the test suite</strong> rather than by convention. Signature verification, idempotency keys, an outbox and a reconciliation pass hold the rest together.</p>
+<figure class="fig"><div class="frame">
+<svg viewBox="0 0 800 300" role="img" aria-label="The API requests changes from the escrow contract, but only the event watcher writes money state into the database.">
+<defs><marker id="ar1" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" class="head"/></marker><marker id="as1" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" class="headsig"/></marker></defs>
+<rect class="bx" x="6" y="36" width="150" height="58" rx="2"/><text class="t" x="81.0" y="63.0" text-anchor="middle">Wallet</text><text class="tm" x="81.0" y="80.0" text-anchor="middle">Privy · EIP-712</text>
+<rect class="bx" x="272" y="36" width="196" height="58" rx="2"/><text class="t" x="370.0" y="63.0" text-anchor="middle">FastAPI</text><text class="tm" x="370.0" y="80.0" text-anchor="middle">orchestrator</text>
+<rect class="bx" x="590" y="36" width="184" height="58" rx="2"/><text class="t" x="682.0" y="63.0" text-anchor="middle">IntentraEscrow</text><text class="tm" x="682.0" y="80.0" text-anchor="middle">Arc · USDC</text>
+<rect class="bx" x="272" y="214" width="196" height="58" rx="2"/><text class="t" x="370.0" y="247.0" text-anchor="middle">transactions.state</text>
+<rect class="bx" x="590" y="214" width="184" height="58" rx="2"/><text class="t" x="682.0" y="247.0" text-anchor="middle">event watcher</text>
+<line class="ln" x1="156" y1="65" x2="264" y2="65" marker-end="url(#ar1)"/>
+<text class="tm" x="210" y="56" text-anchor="middle">signs mandate</text>
+<line class="ln" x1="468" y1="65" x2="582" y2="65" marker-end="url(#ar1)"/>
+<text class="tm" x="525" y="47" text-anchor="middle">createIntent</text>
+<text class="tm" x="525" y="59" text-anchor="middle">fundIntent</text>
+<line class="ln sig" x1="682" y1="94" x2="682" y2="206" marker-end="url(#as1)"/>
+<text class="sigt" x="694" y="140">emits</text>
+<text class="sigt" x="694" y="155">IntentFunded</text>
+<text class="sigt" x="694" y="170">IntentResolved</text>
+<line class="ln sig" x1="582" y1="243" x2="476" y2="243" marker-end="url(#as1)"/>
+<text class="sigt" x="529" y="234" text-anchor="middle">applies</text>
+<line class="ln dash" x1="370" y1="94" x2="370" y2="206"/>
+<line class="ln" x1="361" y1="141" x2="379" y2="159"/>
+<line class="ln" x1="379" y1="141" x2="361" y2="159"/>
+<text class="tm" x="352" y="145" text-anchor="end">money state is</text>
+<text class="tm" x="352" y="160" text-anchor="end">never written here</text>
+</svg>
+</div><figcaption>Money states commit on chain events only — the API requests, the watcher applies.</figcaption></figure>
         <div class="specs mono">
           <span><b>20</b> test suites</span><span><b>48</b> hours</span><span>EIP-712 · Solidity · The Graph</span><span>FastAPI · PostgreSQL</span>
         </div>
@@ -448,6 +500,24 @@
         </div>
         <p>A <strong>hospital-grade patient status platform.</strong> Clinical staff update patient state; families receive push notifications the moment it changes. Every hospital runs as a fully isolated tenant, and every access path enforces that boundary — which is the genuinely hard part.</p>
         <p>Ships with role-based access control, WebSocket live updates behind a token watchdog, shift-handover workflows, emergency flags, a super-admin backoffice, and five dedicated documents covering architecture, security and operations.</p>
+<figure class="fig"><div class="frame">
+<svg viewBox="0 0 780 280" role="img" aria-label="A clinical status update passes a tenant check, then fans out live to ward dashboards and as a push notification to family phones.">
+<defs><marker id="ar3" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" class="head"/></marker><marker id="as3" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" class="headsig"/></marker></defs>
+<rect class="bx" x="4" y="112" width="140" height="58" rx="2"/><text class="t" x="74.0" y="145.0" text-anchor="middle">clinical staff</text>
+<rect class="bx" x="214" y="112" width="188" height="58" rx="2"/><text class="t" x="308" y="139" text-anchor="middle">API</text><text class="tm" x="308" y="156" text-anchor="middle">tenant guard</text>
+<rect class="bx" x="600" y="36" width="172" height="52" rx="2"/><text class="t" x="686.0" y="66.0" text-anchor="middle">ward dashboards</text>
+<rect class="bx" x="444" y="186" width="118" height="52" rx="2"/><text class="t" x="503.0" y="216.0" text-anchor="middle">Celery</text>
+<rect class="bx" x="600" y="186" width="172" height="52" rx="2"/><text class="t" x="686.0" y="216.0" text-anchor="middle">family phones</text>
+<line class="ln" x1="144" y1="141" x2="206" y2="141" marker-end="url(#ar3)"/>
+<text class="tm" x="175" y="132" text-anchor="middle">update</text>
+<path class="ln sig" d="M402 141 L420 141 L420 62 L592 62" marker-end="url(#as3)"/>
+<text class="sigt" x="506" y="52" text-anchor="middle">WebSocket · live</text>
+<path class="ln" d="M402 141 L420 141 L420 212 L436 212" marker-end="url(#ar3)"/>
+<line class="ln" x1="562" y1="212" x2="592" y2="212" marker-end="url(#ar3)"/>
+<text class="tm" x="577" y="203" text-anchor="middle">FCM</text>
+<text class="sigt" x="308" y="192" text-anchor="middle">every path re-checks hospital_id</text>
+</svg>
+</div><figcaption>One status change fans out two ways — and never leaves its hospital's tenant.</figcaption></figure>
         <div class="specs mono">
           <span><b>248</b> tests</span><span><b>30</b> test suites</span><span><b>12</b> migrations</span><span>FastAPI · Celery · Redis · FCM</span>
         </div>
@@ -460,6 +530,29 @@
         </div>
         <p>An <strong>LLM document-extraction service built as a multi-tenant SaaS backend.</strong> Upload a PDF, image or DOCX; get structured JSON back by async polling or webhook callback.</p>
         <p>Schema-driven extraction runs through an <strong>LLM map-reduce pipeline with layered reliability</strong>, so a single model outage never permanently blocks a job. Redis Bloom filters catch duplicate uploads before they cost anything. API keys are hashed, tenants are fully isolated, job progress is persisted and streamable.</p>
+<figure class="fig"><div class="frame">
+<svg viewBox="0 0 800 292" role="img" aria-label="An uploaded document is split into chunks, each extracted by the model in parallel, then merged into one JSON result, with retries and fallbacks around each call.">
+<defs><marker id="ar2" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" class="head"/></marker><marker id="as2" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" class="headsig"/></marker></defs>
+<rect class="bx" x="4" y="116" width="124" height="56" rx="2"/><text class="t" x="66.0" y="142.0" text-anchor="middle">upload</text><text class="tm" x="66.0" y="159.0" text-anchor="middle">PDF · DOCX</text>
+<rect class="bx" x="168" y="116" width="124" height="56" rx="2"/><text class="t" x="230.0" y="148.0" text-anchor="middle">chunker</text>
+<rect class="bx" x="332" y="30" width="150" height="50" rx="2"/><text class="t" x="407.0" y="59.0" text-anchor="middle">LLM extract</text>
+<rect class="bx" x="332" y="116" width="150" height="50" rx="2"/><text class="t" x="407.0" y="145.0" text-anchor="middle">LLM extract</text>
+<rect class="bx" x="332" y="202" width="150" height="50" rx="2"/><text class="t" x="407.0" y="231.0" text-anchor="middle">LLM extract</text>
+<rect class="bx" x="522" y="116" width="104" height="56" rx="2"/><text class="t" x="574.0" y="148.0" text-anchor="middle">merge</text>
+<rect class="bx" x="666" y="116" width="130" height="56" rx="2"/><text class="t" x="731.0" y="142.0" text-anchor="middle">JSON</text><text class="tm" x="731.0" y="159.0" text-anchor="middle">structured</text>
+<line class="ln" x1="128" y1="144" x2="160" y2="144" marker-end="url(#ar2)"/>
+<path class="ln" d="M292 144 L312 144 L312 55 L324 55" marker-end="url(#ar2)"/>
+<line class="ln" x1="292" y1="144" x2="324" y2="144" marker-end="url(#ar2)"/>
+<path class="ln" d="M292 144 L312 144 L312 227 L324 227" marker-end="url(#ar2)"/>
+<path class="ln" d="M482 55 L502 55 L502 138 L514 138" marker-end="url(#ar2)"/>
+<line class="ln" x1="482" y1="144" x2="514" y2="144" marker-end="url(#ar2)"/>
+<path class="ln" d="M482 227 L502 227 L502 150 L514 150" marker-end="url(#ar2)"/>
+<line class="ln" x1="626" y1="144" x2="658" y2="144" marker-end="url(#ar2)"/>
+<text class="tm" x="205" y="98" text-anchor="middle">splits past the context window</text>
+<path class="ln sig" d="M332 266 L332 274 L482 274 L482 266"/>
+<text class="sigt" x="407" y="288" text-anchor="middle">circuit breaker · 3 retries, exponential backoff · JSON repair</text>
+</svg>
+</div><figcaption>One model timeout cannot strand a job — each chunk fails and recovers on its own.</figcaption></figure>
         <div class="specs mono">
           <span><b>7</b> migrations</span><span>Celery workers</span><span>S3 / MinIO</span><span>Webhook callbacks</span>
         </div>
