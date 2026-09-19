@@ -12,6 +12,8 @@ whole site is one file plus web fonts, which felt like the honest way to present
 work.
 
 - Semantic HTML with a token-driven CSS custom property system
+- A sticky section nav with scroll-spy highlighting and a reading-progress bar, written
+  against `scrollLeft` rather than `scrollIntoView` so it never drags the page around
 - Light and dark themes, following the OS by default with a manual toggle that persists
   to `localStorage`
 - Responsive down to 375px, no horizontal scroll
@@ -19,6 +21,10 @@ work.
 - Open Graph and Twitter card metadata so the link previews properly when shared
 
 Type is Archivo, Newsreader and IBM Plex Mono.
+
+The CV is served straight from the repository root as `Daniel-Ude-CV.pdf`, linked from
+the nav, the hero, the CV section and the footer. Replacing the file replaces the
+download everywhere — there is nothing else to update.
 
 ## Running it locally
 

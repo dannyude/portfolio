@@ -325,6 +325,90 @@
   .btn.primary{background:var(--signal);border-color:var(--signal);color:var(--bg)}
   .btn.primary:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 
+
+  /* ---------- cv ---------- */
+  .hero .lede{margin-bottom:30px}
+  .hero .links{margin:0 0 44px}
+  .cv{
+    display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+    border:1px solid var(--rule);background:var(--surface);
+    padding:24px;border-radius:2px;box-shadow:var(--shadow);
+  }
+  .cv-doc{
+    flex:none;width:52px;height:64px;border-radius:2px;
+    border:1px solid var(--rule);background:var(--bg);
+    display:grid;place-items:center;color:var(--signal);
+    position:relative;
+  }
+  .cv-doc svg{width:22px;height:22px;display:block}
+  .cv-body{flex:1 1 280px;min-width:0}
+  .cv-body h3{
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    font-variation-settings:"wdth" 106,"wght" 630;
+    font-size:1.18rem;margin:0 0 6px;letter-spacing:-.01em;color:var(--ink);
+  }
+  .cv-body p{margin:0;color:var(--ink-2);max-width:56ch}
+  .cv-meta{display:flex;gap:0 18px;flex-wrap:wrap;color:var(--muted);margin-top:10px}
+  .cv-actions{display:flex;gap:10px;flex-wrap:wrap;flex:none}
+  @media (max-width:760px){
+    .cv{padding:18px;gap:18px}
+    .cv-actions{width:100%}
+    .cv-actions .btn{flex:1 1 auto;text-align:center}
+  }
+
+
+  /* ---------- nav ---------- */
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  .nav{
+    position:sticky;top:0;z-index:20;
+    background:color-mix(in srgb,var(--bg) 86%,transparent);
+    backdrop-filter:saturate(1.5) blur(12px);
+    -webkit-backdrop-filter:saturate(1.5) blur(12px);
+    border-bottom:1px solid var(--rule-soft);
+  }
+  .nav-prog{
+    position:absolute;left:0;bottom:-1px;height:2px;width:0;
+    background:var(--signal);transition:width .1s linear;
+  }
+  @media (prefers-reduced-motion:reduce){.nav-prog{transition:none}}
+  .nav-inner{
+    max-width:1080px;margin:0 auto;padding:0 28px;
+    height:56px;display:flex;align-items:center;gap:16px;
+  }
+  .nav-mark{
+    font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+    font-variation-settings:"wdth" 112,"wght" 680;
+    font-size:15px;letter-spacing:-.01em;
+    color:var(--ink);border-bottom:0;flex:none;
+  }
+  .nav-mark:hover{color:var(--signal)}
+  .nav-links{
+    display:flex;align-items:center;gap:2px;
+    margin-left:auto;min-width:0;overflow-x:auto;
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{
+    color:var(--muted);border-bottom:0;
+    padding:7px 10px;border-radius:2px;white-space:nowrap;
+    transition:color .18s,background .18s;
+  }
+  .nav-links a:hover{color:var(--ink);background:var(--signal-soft)}
+  .nav-links a.active{color:var(--signal);background:var(--signal-soft)}
+  .nav-actions{display:flex;align-items:center;gap:8px;flex:none}
+  .nav-cv{
+    display:inline-flex;align-items:center;gap:7px;
+    border:1px solid var(--rule);border-radius:2px;
+    padding:8px 12px;color:var(--ink);background:var(--surface);
+    transition:border-color .18s,color .18s;
+  }
+  .nav-cv:hover{border-color:var(--signal);color:var(--signal)}
+  .nav-cv svg{width:12px;height:12px;display:block}
+
+  [id]{scroll-margin-top:74px}
+
   @media (max-width:760px){
     .section{grid-template-columns:1fr;gap:18px}
     .section > .rail{padding-top:0}
@@ -333,14 +417,18 @@
     .readout:nth-child(even){padding-left:22px;border-left:1px solid var(--rule-soft)}
     .row{grid-template-columns:1fr;gap:5px}
     .row dt{padding-top:0}
+    .nav-inner{padding:0 14px;gap:10px;height:52px}
+    .nav-links{margin-left:6px;-webkit-mask-image:linear-gradient(to right,transparent,#000 12px,#000 calc(100% - 12px),transparent);mask-image:linear-gradient(to right,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
+    .nav-links a{padding:7px 8px}
+    .nav-cv span{display:none}
+    .nav-cv{padding:8px 10px}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
 
   /* ---------- theme toggle ---------- */
   .theme-toggle{
-    position:fixed;top:18px;right:18px;z-index:10;
-    width:38px;height:38px;border-radius:2px;
+    width:34px;height:34px;border-radius:2px;flex:none;padding:0;
     border:1px solid var(--rule);
     background:var(--surface);color:var(--ink-2);
     display:grid;place-items:center;cursor:pointer;
@@ -356,16 +444,36 @@
     :root:not([data-theme="light"]) .theme-toggle .moon{display:block}
     :root:not([data-theme="light"]) .theme-toggle .sun{display:none}
   }
-  @media (max-width:760px){.theme-toggle{top:12px;right:12px;width:34px;height:34px}}
+  @media (max-width:760px){.theme-toggle{width:32px;height:32px}}
 </style>
 </head>
 <body>
-<button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch colour theme">
-  <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
-  <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.4A8.6 8.6 0 1 1 9.6 3.5a6.9 6.9 0 0 0 10.9 10.9Z"/></svg>
-</button>
+<nav class="nav" aria-label="Page sections">
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top">Daniel&nbsp;Ude</a>
+    <div class="nav-links mono" id="navLinks">
+      <a href="#position">Position</a>
+      <a href="#experience">Experience</a>
+      <a href="#systems">Systems</a>
+      <a href="#practice">Practice</a>
+      <a href="#stack">Stack</a>
+      <a href="#cv">CV</a>
+    </div>
+    <div class="nav-actions">
+      <a class="nav-cv mono" href="Daniel-Ude-CV.pdf" download="Daniel-Ude-CV.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        <span>CV</span>
+      </a>
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch colour theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.4A8.6 8.6 0 1 1 9.6 3.5a6.9 6.9 0 0 0 10.9 10.9Z"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="nav-prog" id="navProg"></div>
+</nav>
 
-<div class="wrap">
+<div class="wrap" id="top">
 
   <header class="hero">
     <div class="eyebrow mono">
@@ -378,6 +486,12 @@
     <h1>Daniel&nbsp;Ude</h1>
 
     <p class="lede">Backend engineer. I build the systems that <em>stay up</em> when it matters.</p>
+
+    <div class="links">
+      <a class="btn primary" href="Daniel-Ude-CV.pdf" download="Daniel-Ude-CV.pdf">Download CV</a>
+      <a class="btn" href="#systems">See the systems</a>
+      <a class="btn" href="mailto:danielude98@gmail.com">Email me</a>
+    </div>
 
     <div class="readouts">
       <div class="readout">
@@ -399,7 +513,7 @@
     </div>
   </header>
 
-  <section class="section">
+  <section class="section" id="position">
     <div class="rail mono"><span class="idx">01</span>Position</div>
     <div class="prose">
       <h2>Async Python that holds under real load</h2>
@@ -409,18 +523,9 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="experience">
     <div class="rail mono"><span class="idx">02</span>Experience</div>
     <div class="roles">
-
-      <article class="role">
-        <div class="role-head">
-          <h3>Backend Engineer <span class="at">Tenece Services Ltd</span></h3>
-          <span class="when mono">Feb 2025 — Feb 2026 · Contract</span>
-        </div>
-        <p>Designed and shipped the <strong>crash-tracking service for <em>Nautical Fury</em></strong>, a live game — capturing forced closes and crashes from both code errors and graphics overload so the game team could reproduce and fix them.</p>
-        <p>Built the <strong>real-time event ingestion pipeline</strong> on FastAPI and Celery, processing crash events, uncaught exceptions, request failures and performance anomalies through a distributed, event-driven architecture. Owned the service end to end, from system design and database architecture through to deployment and production maintenance.</p>
-      </article>
 
       <article class="role">
         <div class="role-head">
@@ -433,8 +538,17 @@
 
       <article class="role">
         <div class="role-head">
+          <h3>Backend Engineer <span class="at">Tenece Services Ltd</span></h3>
+          <span class="when mono">Feb 2025 — Feb 2026 · Contract</span>
+        </div>
+        <p>Designed and shipped the <strong>crash-tracking service for <em>Nautical Fury</em></strong>, a live game — capturing forced closes and crashes from both code errors and graphics overload so the game team could reproduce and fix them.</p>
+        <p>Built the <strong>real-time event ingestion pipeline</strong> on FastAPI and Celery, processing crash events, uncaught exceptions, request failures and performance anomalies through a distributed, event-driven architecture. Owned the service end to end, from system design and database architecture through to deployment and production maintenance.</p>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
           <h3>Freelance Backend Developer</h3>
-          <span class="when mono">Dec 2021 — 2024</span>
+          <span class="when mono">Dec 2021 — Mar 2025</span>
         </div>
         <p>Built and maintained REST APIs and backend services for <strong>15 clients</strong> across software and technology projects — data modelling, business logic and third-party integrations in Flask, FastAPI, SQLAlchemy and PostgreSQL — plus database and automation scripting, and debugging inside existing client codebases.</p>
       </article>
@@ -450,14 +564,43 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="systems">
     <div class="rail mono"><span class="idx">03</span>Systems</div>
     <div class="systems">
 
       <article class="sys">
         <div class="sys-head">
+          <h3><a href="https://github.com/dannyude/pollar-app">Puente</a></h3>
+          <span class="tag new mono">Web3 · Live</span>
+        </div>
+        <p><strong>A peer-to-peer naira&nbsp;↔&nbsp;USDC exchange</strong> on the Africa&nbsp;↔&nbsp;Bolivia corridor: local agents handle add-money and cash-out for Pollar wallets, and a <strong>Stellar escrow holds the USDC between the two legs</strong>. Either side can send first, because whoever moves first is never the side carrying the risk.</p>
+        <p>The whole design turns on one awkward fact: the other leg is a bank transfer the server will never see. So the escrow moves on evidence only — USDC is locked up front and released when the counterparty confirms, and a disputed order <strong>freezes on purpose</strong>. No timer advances it and no action is offered to either party, because whether naira actually arrived is not something the system can know. An operator settles it against the receipt.</p>
+        <p>The backend is <strong>functional core, imperative shell</strong>. Every rule — who may act on an order and when, what it costs, what an agent's float allows, whether a Stellar payment really funds a cash-out — is a pure function over immutable records in <code>domain/</code>, with no <code>await</code>, no I/O and no clock; <code>now</code> is passed in. Postgres, Stellar and Pollar sit at the edges and are handed to services explicitly. Enforcement and the actions the UI offers read the <strong>same state-machine table</strong>, so the buttons a user sees cannot drift from the rules the server applies.</p>
+        <p>Paying the same person twice is the failure that costs real money, so it gets its own decision layer: the Stellar gateway reports what the chain shows, a pure function judges it, and a second payout is reachable only by an operator marking the first one bounced — never by either party claiming a transfer failed. A <strong>public, sign-in-free proof page</strong> shows live escrow reserves against every agent's liabilities, each settled order linked to its on-chain transaction.</p>
+<figure class="fig"><div class="frame">
+<svg viewBox="0 0 800 292" role="img" aria-label="USDC is locked in a Stellar escrow controlled by the Puente API, while the naira leg travels bank-to-bank outside the system.">
+<defs><marker id="ar4" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" class="head"/></marker><marker id="as4" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" class="headsig"/></marker></defs>
+<rect class="bx" x="6" y="26" width="150" height="56" rx="2"/><text class="t" x="81" y="52" text-anchor="middle">Customer</text><text class="tm" x="81" y="69" text-anchor="middle">Pollar wallet</text>
+<rect class="bx" x="300" y="26" width="180" height="56" rx="2"/><text class="t" x="390" y="52" text-anchor="middle">Puente API</text><text class="tm" x="390" y="69" text-anchor="middle">FastAPI · pure domain</text>
+<rect class="bx" x="630" y="26" width="150" height="56" rx="2"/><text class="t" x="705" y="52" text-anchor="middle">Agent</text><text class="tm" x="705" y="69" text-anchor="middle">float in escrow</text>
+<rect class="bx" x="300" y="146" width="180" height="56" rx="2"/><text class="t" x="390" y="172" text-anchor="middle">Stellar escrow</text><text class="tm" x="390" y="189" text-anchor="middle">USDC · server-signed</text>
+<rect class="bx" x="600" y="146" width="180" height="56" rx="2"/><text class="t" x="690" y="172" text-anchor="middle">/api/proof</text><text class="tm" x="690" y="189" text-anchor="middle">public · sign-in free</text>
+<path class="ln" d="M156 54 H292" marker-end="url(#ar4)"/><text class="tm" x="224" y="45" text-anchor="middle">order</text>
+<path class="ln" d="M480 54 H622" marker-end="url(#ar4)"/><text class="tm" x="551" y="45" text-anchor="middle">queue</text>
+<path class="ln sig" d="M390 82 V138" marker-end="url(#as4)"/><text class="sigt" x="400" y="118">lock / release</text>
+<path class="ln" d="M480 174 H592" marker-end="url(#ar4)"/>
+<path class="ln dash" d="M81 82 V246 H705 V90"/><text class="tm" x="393" y="238" text-anchor="middle">naira · bank transfer · off-system</text>
+</svg>
+</div><figcaption>The escrow is the only leg the server controls — which is exactly why the bank transfer is the only thing left to dispute.</figcaption></figure>
+        <div class="specs mono">
+          <span><b>0</b> I/O in the domain layer</span><span>Stellar · USDC escrow</span><span>PostgreSQL</span><span>Next.js</span><span><a href="https://pollar-app-alpha.vercel.app">Live demo</a></span>
+        </div>
+      </article>
+
+      <article class="sys">
+        <div class="sys-head">
           <h3><a href="https://github.com/Soar-On-Technologies-Global-Concept-Ltd/ETHOnline-Startup/tree/main/intentra-monorepo">Intentra</a></h3>
-          <span class="tag new mono">Web3 · 48-hour hackathon</span>
+          <span class="tag mono">Web3 · 48-hour hackathon</span>
         </div>
         <p><strong>I owned the backend</strong> for a four-person ETHOnline 2026 submission — and I had never written a line of Web3 before the weekend started.</p>
         <p>Intentra ties every payment to what a person actually authorised and what was actually delivered: the AI proposes, the human signs an <strong>EIP-712 mandate</strong>, USDC sits in a Solidity escrow on the Arc testnet, delivery photos are hashed and anchored on-chain, and a disputed job settles only on a split both parties signed. I built the <strong>FastAPI modular monolith</strong> that orchestrates it — the trusted coordinator that never holds funds.</p>
@@ -585,7 +728,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="practice">
     <div class="rail mono"><span class="idx">04</span>Practice</div>
     <dl class="practice">
       <div class="row"><dt class="mono">Architecture</dt><dd>Per-feature modules — <code>models</code> / <code>schemas</code> / <code>service</code> / <code>routers</code> — so a codebase stays navigable at 50 files and at 500. Multi-tenancy and authorization enforced once, at the dependency layer.</dd></div>
@@ -596,7 +739,7 @@
     </dl>
   </section>
 
-  <section class="section">
+  <section class="section" id="stack">
     <div class="rail mono"><span class="idx">05</span>Stack</div>
     <div>
       <div class="chips mono" style="margin-bottom:10px">
@@ -606,7 +749,31 @@
         <span class="chip">Docker</span><span class="chip">Docker Compose</span><span class="chip">Alembic</span><span class="chip">GitHub Actions</span><span class="chip">MinIO / S3</span><span class="chip">Nginx</span>
       </div>
       <div class="chips mono">
-        <span class="chip">Pytest</span><span class="chip">JWT / OAuth2</span><span class="chip">RBAC</span><span class="chip">WebSockets</span><span class="chip">REST API design</span><span class="chip">Event-driven design</span><span class="chip">Multi-tenant architecture</span><span class="chip">LLM integration</span><span class="chip">EIP-712</span><span class="chip">Solidity ABI / on-chain events</span>
+        <span class="chip">Pytest</span><span class="chip">JWT / OAuth2</span><span class="chip">RBAC</span><span class="chip">WebSockets</span><span class="chip">REST API design</span><span class="chip">Event-driven design</span><span class="chip">Multi-tenant architecture</span><span class="chip">LLM integration</span><span class="chip">EIP-712</span><span class="chip">Solidity ABI / on-chain events</span><span class="chip">Stellar SDK</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cv">
+    <div class="rail mono"><span class="idx">06</span>CV</div>
+    <div>
+      <div class="cv">
+        <div class="cv-doc">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h5"/></svg>
+        </div>
+        <div class="cv-body">
+          <h3>Daniel Ude — Curriculum Vitae</h3>
+          <p>Everything on this page, condensed to two pages: experience, selected systems, writing, education and the full technical stack.</p>
+          <div class="cv-meta mono">
+            <span>PDF · 70 KB</span>
+            <span>2 pages</span>
+            <span>Updated September 2026</span>
+          </div>
+        </div>
+        <div class="cv-actions">
+          <a class="btn primary" href="Daniel-Ude-CV.pdf" download="Daniel-Ude-CV.pdf">Download CV</a>
+          <a class="btn" href="Daniel-Ude-CV.pdf" target="_blank" rel="noopener">Open in browser</a>
+        </div>
       </div>
     </div>
   </section>
@@ -622,6 +789,7 @@
     </div>
     <div class="links">
       <a class="btn primary" href="mailto:danielude98@gmail.com">Email me</a>
+      <a class="btn" href="Daniel-Ude-CV.pdf" download="Daniel-Ude-CV.pdf">Download CV</a>
       <a class="btn" href="https://linkedin.com/in/daniel-ude-2b750a152/">LinkedIn</a>
       <a class="btn" href="https://github.com/dannyude">GitHub</a>
     </div>
@@ -675,6 +843,62 @@
       root.setAttribute("data-theme", next);
       try { localStorage.setItem("theme", next); } catch (e) {}
     });
+  })();
+</script>
+
+
+<script>
+  (function () {
+    var links = [].slice.call(document.querySelectorAll("#navLinks a"));
+    var prog = document.getElementById("navProg");
+    if (!links.length) return;
+
+    var targets = links.map(function (a) {
+      return document.getElementById(a.getAttribute("href").slice(1));
+    });
+
+    var ticking = false, last = -2;
+    function update() {
+      ticking = false;
+
+      if (prog) {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        prog.style.width = (max > 0 ? Math.min(window.scrollY / max, 1) * 100 : 0) + "%";
+      }
+
+      // The section you are reading is the last one whose top has passed the nav.
+      var cur = -1;
+      targets.forEach(function (el, i) {
+        if (el && el.getBoundingClientRect().top <= 90) cur = i;
+      });
+
+      // At the very bottom the last section's top may never clear the nav,
+      // so nothing would light up on the screen you are actually looking at.
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        cur = links.length - 1;
+      }
+
+      if (cur === last) return;
+      last = cur;
+      links.forEach(function (a, i) { a.classList.toggle("active", i === cur); });
+
+      // The strip scrolls on narrow screens — keep the active link in view.
+      // Set scrollLeft rather than scrollIntoView: the latter also scrolls the
+      // document, which drags the page away from where the reader put it.
+      var strip = document.getElementById("navLinks");
+      if (cur > -1 && strip && strip.scrollWidth > strip.clientWidth) {
+        var el = links[cur];
+        strip.scrollLeft = Math.max(0, el.offsetLeft - (strip.clientWidth - el.offsetWidth) / 2);
+      }
+    }
+
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll);
+    update();
   })();
 </script>
 
